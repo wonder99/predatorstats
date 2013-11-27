@@ -22,6 +22,13 @@ public class MainActivity extends Activity {
 	TextView tv_stat1_RW1;
 	int stat1_RW1;
 	
+	TextView tv_stat2_LW1;
+	int stat2_LW1;
+	TextView tv_stat2_C1;
+	int stat2_C1;
+	TextView tv_stat2_RW1;
+	int stat2_RW1;
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,21 @@ public class MainActivity extends Activity {
         tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
         bt_RW1.setOnTouchListener(activitySwipeDetector);
         
+        bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
+        tv_stat2_LW1 = (TextView) findViewById(R.id.Stat2_LW1);
+        tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
+        bt_LW1.setOnTouchListener(activitySwipeDetector);
+        
+        bt_C1 = (Button) findViewById(R.id.Button_C1);
+        tv_stat2_C1 = (TextView) findViewById(R.id.Stat2_C1);
+        tv_stat2_C1.setText(Integer.toString(stat2_C1));
+        bt_C1.setOnTouchListener(activitySwipeDetector);
+    
+        bt_RW1 = (Button) findViewById(R.id.Button_RW1);
+        tv_stat2_RW1 = (TextView) findViewById(R.id.Stat2_RW1);
+        tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+        bt_RW1.setOnTouchListener(activitySwipeDetector);
+        
     }
     private String addsign(int stat) {
 		String result = "";
@@ -60,7 +82,7 @@ public class MainActivity extends Activity {
 
     	static final String logTag = "ActivitySwipeDetector";
     	private Activity activity;
-    	static final int MIN_DISTANCE = 100;
+    	static final int MIN_DISTANCE = 50;
     	private float downX, downY, upX, upY;
 
     	public ActivitySwipeDetector(Activity activity){
@@ -68,9 +90,8 @@ public class MainActivity extends Activity {
     	}
 
 		public void onRightToLeftSwipe(View v){
-		    Log.i(logTag, "RightToLeftSwipe!");
-		    int myViewId = (int) v.getId();
-		    switch( myViewId ) {
+		    Log.i(logTag, "RightToLeftSwipe! of ");
+		    switch( v.getId() ) {
 			    case R.id.Button_LW1:
 			    	stat1_LW1--; 
 			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
@@ -90,8 +111,7 @@ public class MainActivity extends Activity {
 		
 		public void onLeftToRightSwipe(View v){
 		    Log.i(logTag, "LeftToRightSwipe!");
-		    int myViewId = (int) v.getId();
-		    switch( myViewId ) {
+		    switch( v.getId() ) {
 			    case R.id.Button_LW1:
 			    	stat1_LW1++; 
 			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
@@ -107,14 +127,42 @@ public class MainActivity extends Activity {
 		    }
 		}
 		
-		public void onTopToBottomSwipe(){
+		public void onTopToBottomSwipe(View v){
 		    Log.i(logTag, "onTopToBottomSwipe!");
-		    //activity.doSomething();
+		    switch( v.getId() ) {
+			    case R.id.Button_LW1:
+			    	stat2_LW1--; 
+			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
+			    	break;
+			    case R.id.Button_C1:
+			    	stat2_C1--; 
+			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
+			    	break;
+			    case R.id.Button_RW1:
+			    	stat2_RW1--;
+			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+			    	break;
+		    }
+
+		    
 		}
 		
-		public void onBottomToTopSwipe(){
+		public void onBottomToTopSwipe(View v){
 		    Log.i(logTag, "onBottomToTopSwipe!");
-		    //activity.doSomething();
+		    switch( v.getId() ) {
+			    case R.id.Button_LW1:
+			    	stat2_LW1++; 
+			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
+			    	break;
+			    case R.id.Button_C1:
+			    	stat2_C1++; 
+			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
+			    	break;
+			    case R.id.Button_RW1:
+			    	stat2_RW1++;
+			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+			    	break;
+		    }
 		}
 
     	public boolean onTouch(View v, MotionEvent event) {
@@ -130,28 +178,24 @@ public class MainActivity extends Activity {
 		
 		            float deltaX = downX - upX;
 		            float deltaY = downY - upY;
-		
+		            	
+                    Log.i(logTag, "Swipe was " + Math.abs(deltaX) + " wide and " + Math.abs(deltaY) + "long.  " );
+                    Log.i(logTag, "X1=" + downX + ", Y1=" + downY + ", X2=" + upX + ", Y2=" + upY );
+                    
+
 		            // swipe horizontal?
-		            if(Math.abs(deltaX) > MIN_DISTANCE){
+		            if( (Math.abs(deltaX) > Math.abs(deltaY)) & (Math.abs(deltaX) > MIN_DISTANCE) ){
 		                // left or right
 		                if(deltaX < 0) { this.onLeftToRightSwipe(v); return true; }
 		                if(deltaX > 0) { this.onRightToLeftSwipe(v); return true; }
 		            }
-		            else {
-		                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+		            else if (Math.abs(deltaY) > MIN_DISTANCE) {
+			                if(deltaY < 0) { this.onTopToBottomSwipe(v); return true; }
+			                if(deltaY > 0) { this.onBottomToTopSwipe(v); return true; }
+			                else {
 		                    return false; // We don't consume the event
-		            }
-		
-		            // swipe vertical?
-		            if(Math.abs(deltaY) > MIN_DISTANCE){
-		                // top or down
-		                if(deltaY < 0) { this.onTopToBottomSwipe(); return true; }
-		                if(deltaY > 0) { this.onBottomToTopSwipe(); return true; }
-		            }
-		            else {
-		                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
-		                    return false; // We don't consume the event
-		            }
+			                } 
+			        }
 		
 		            return true;
 		        }
