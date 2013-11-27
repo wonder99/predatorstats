@@ -38,7 +38,7 @@
             android:layout_marginLeft="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginRight="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -86,7 +86,7 @@
             android:layout_marginLeft="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
 
         <TextView
@@ -99,7 +99,7 @@
             android:layout_marginRight="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
         </RelativeLayout>
 
@@ -134,7 +134,7 @@
             android:layout_marginLeft="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
 
         <TextView
@@ -147,7 +147,7 @@
             android:layout_marginRight="10sp"
             android:clickable="false"
             android:text="@string/stat_init"
-            android:textColor="#FF1111"
+            android:textColor="#FFFF11"
             android:textSize="12sp" />
     </RelativeLayout>
 
