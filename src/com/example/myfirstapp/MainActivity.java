@@ -17,20 +17,35 @@ public class MainActivity extends Activity {
 
 	TextView tv_stat1_LW1;
 	int stat1_LW1;
+	TextView tv_stat1_C1;
+	int stat1_C1;
+	TextView tv_stat1_RW1;
+	int stat1_RW1;
 	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        ActivitySwipeDetector activitySwipeDetector = new ActivitySwipeDetector(this);
+
         bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
-        bt_C1 = (Button) findViewById(R.id.Button_C1);
-        bt_RW1 = (Button) findViewById(R.id.Button_RW1);
         tv_stat1_LW1 = (TextView) findViewById(R.id.Stat1_LW1);
         tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-        ActivitySwipeDetector activitySwipeDetector = new ActivitySwipeDetector(this);
         bt_LW1.setOnTouchListener(activitySwipeDetector);
-        }
+        
+        bt_C1 = (Button) findViewById(R.id.Button_C1);
+        tv_stat1_C1 = (TextView) findViewById(R.id.Stat1_C1);
+        tv_stat1_C1.setText(Integer.toString(stat1_C1));
+        bt_C1.setOnTouchListener(activitySwipeDetector);
+    
+        bt_RW1 = (Button) findViewById(R.id.Button_RW1);
+        tv_stat1_RW1 = (TextView) findViewById(R.id.Stat1_RW1);
+        tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+        bt_RW1.setOnTouchListener(activitySwipeDetector);
+        
+    }
     private String addsign(int stat) {
 		String result = "";
 		if( stat > 0 ) 
@@ -54,20 +69,42 @@ public class MainActivity extends Activity {
 
 		public void onRightToLeftSwipe(View v){
 		    Log.i(logTag, "RightToLeftSwipe!");
-		    //if( v.getParent().equals(findViewById(R.id.Layout_LW1)) )
 		    int myViewId = (int) v.getId();
 		    switch( myViewId ) {
-		    case R.id.Button_LW1:
-		    	stat1_LW1++; 
+			    case R.id.Button_LW1:
+			    	stat1_LW1--; 
+			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
+			    	break;
+			    case R.id.Button_C1:
+			    	stat1_C1--; 
+			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
+			    	break;
+			    case R.id.Button_RW1:
+			    	stat1_RW1--;
+			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+			    	break;
 		    }
 		    
-	        tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
+	        
 		}
 		
 		public void onLeftToRightSwipe(View v){
 		    Log.i(logTag, "LeftToRightSwipe!");
-		    stat1_LW1--; 
-	        tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
+		    int myViewId = (int) v.getId();
+		    switch( myViewId ) {
+			    case R.id.Button_LW1:
+			    	stat1_LW1++; 
+			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
+			    	break;
+			    case R.id.Button_C1:
+			    	stat1_C1++; 
+			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
+			    	break;
+			    case R.id.Button_RW1:
+			    	stat1_RW1++;
+			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+			    	break;
+		    }
 		}
 		
 		public void onTopToBottomSwipe(){
