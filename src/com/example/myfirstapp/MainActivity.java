@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -53,13 +52,19 @@ public class MainActivity extends Activity {
     	    this.activity = activity;
     	}
 
-		public void onRightToLeftSwipe(){
+		public void onRightToLeftSwipe(View v){
 		    Log.i(logTag, "RightToLeftSwipe!");
-		    stat1_LW1++; 
+		    //if( v.getParent().equals(findViewById(R.id.Layout_LW1)) )
+		    int myViewId = (int) v.getId();
+		    switch( myViewId ) {
+		    case R.id.Button_LW1:
+		    	stat1_LW1++; 
+		    }
+		    
 	        tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
 		}
 		
-		public void onLeftToRightSwipe(){
+		public void onLeftToRightSwipe(View v){
 		    Log.i(logTag, "LeftToRightSwipe!");
 		    stat1_LW1--; 
 	        tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
@@ -92,8 +97,8 @@ public class MainActivity extends Activity {
 		            // swipe horizontal?
 		            if(Math.abs(deltaX) > MIN_DISTANCE){
 		                // left or right
-		                if(deltaX < 0) { this.onLeftToRightSwipe(); return true; }
-		                if(deltaX > 0) { this.onRightToLeftSwipe(); return true; }
+		                if(deltaX < 0) { this.onLeftToRightSwipe(v); return true; }
+		                if(deltaX > 0) { this.onRightToLeftSwipe(v); return true; }
 		            }
 		            else {
 		                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
