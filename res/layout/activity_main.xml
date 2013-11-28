@@ -12,15 +12,15 @@
         android:id="@+id/Layout_LW1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="46dp" >
 
         <Button
             android:id="@+id/Button_LW1"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="35dp"
             android:layout_margin="3sp"
-            android:background="@drawable/bt_player"
+            android:background="@drawable/button_90_45"
             android:gravity="center_horizontal|top"
             android:lines="1"
             android:paddingTop="3dp"
@@ -65,10 +65,10 @@
 
         <Button
             android:id="@+id/Button_C1"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="35dp"
             android:layout_margin="3sp"
-            android:background="@drawable/bt_player"
+            android:background="@drawable/button_90_45"
             android:gravity="center_horizontal|top"
             android:lines="1"
             android:paddingTop="3dp"
@@ -113,13 +113,13 @@
 
         <Button
             android:id="@+id/Button_RW1"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="35dp"
             android:layout_margin="3sp"
-            android:background="@drawable/bt_player"
+            android:background="@drawable/button_90_45"
             android:gravity="center_horizontal|top"
-            android:paddingTop="3dp"
             android:lines="1"
+            android:paddingTop="3dp"
             android:text="@string/playername"
             android:textColor="#FFFFFF"
             android:textSize="12sp" />
@@ -150,5 +150,16 @@
             android:textColor="#FFFF11"
             android:textSize="12sp" />
     </RelativeLayout>
+
+<Button
+    android:id="@+id/Button_Row1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignTop="@+id/Layout_LW1"
+    android:layout_marginTop="9dp"
+    android:background="@drawable/row_button_75_35"
+    android:minHeight="0dp"
+    android:minWidth="0dp" />
 
 </RelativeLayout>
