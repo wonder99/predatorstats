@@ -35,7 +35,7 @@
             android:layout_alignBottom="@+id/Button_LW1"
             android:layout_alignLeft="@+id/Button_LW1"
             android:layout_marginBottom="3sp"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
@@ -48,7 +48,7 @@
             android:layout_alignBottom="@+id/Button_LW1"
             android:layout_alignRight="@+id/Button_LW1"
             android:layout_marginBottom="3sp"
-            android:layout_marginRight="10sp"
+            android:layout_marginRight="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
@@ -83,7 +83,7 @@
             android:layout_alignBottom="@+id/Button_C1"
             android:layout_alignLeft="@+id/Button_C1"
             android:layout_marginBottom="3sp"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
@@ -96,20 +96,20 @@
             android:layout_alignBottom="@+id/Button_C1"
             android:layout_alignRight="@+id/Button_C1"
             android:layout_marginBottom="3sp"
-            android:layout_marginRight="10sp"
+            android:layout_marginRight="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
             android:textSize="12sp" />
-        </RelativeLayout>
+    </RelativeLayout>
 
-<RelativeLayout
-    android:id="@+id/Layout_RW1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/Layout_C1"
-    android:layout_alignBottom="@+id/Layout_C1"
-    android:layout_toRightOf="@+id/Layout_C1" >
+    <RelativeLayout
+        android:id="@+id/Layout_RW1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_C1"
+        android:layout_alignBottom="@+id/Layout_C1"
+        android:layout_toRightOf="@+id/Layout_C1" >
 
         <Button
             android:id="@+id/Button_RW1"
@@ -131,7 +131,7 @@
             android:layout_alignBottom="@+id/Button_RW1"
             android:layout_alignLeft="@+id/Button_RW1"
             android:layout_marginBottom="3sp"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
@@ -144,22 +144,42 @@
             android:layout_alignBottom="@+id/Button_RW1"
             android:layout_alignRight="@+id/Button_RW1"
             android:layout_marginBottom="3sp"
-            android:layout_marginRight="10sp"
+            android:layout_marginRight="15sp"
             android:clickable="false"
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
             android:textSize="12sp" />
     </RelativeLayout>
 
-<Button
-    android:id="@+id/Button_Row1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignTop="@+id/Layout_LW1"
-    android:layout_marginTop="9dp"
-    android:background="@drawable/row_button_75_35"
-    android:minHeight="0dp"
-    android:minWidth="0dp" />
+    <Button
+        android:id="@+id/Button_Row1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Layout_LW1"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/row_button_75_35"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/toggleButton1"
+        android:layout_alignBottom="@+id/toggleButton1"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/toggleButton1"
+        android:text="@string/tv_EditMode"
+        android:textSize="20sp" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="26dp"
+        android:layout_toLeftOf="@+id/Layout_RW1"
+        android:minWidth="48dp" />
 
 </RelativeLayout>

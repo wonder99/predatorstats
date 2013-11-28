@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
@@ -31,6 +33,8 @@ public class MainActivity extends Activity {
 	TextView tv_stat2_RW1;
 	int stat2_RW1;
 	
+	ToggleButton tb_edit_mode;
+	boolean editMode;
 	
 	
     @Override
@@ -74,6 +78,21 @@ public class MainActivity extends Activity {
         tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
         bt_RW1.setOnTouchListener(playerSwipeDetector);
         
+        tb_edit_mode = (ToggleButton) findViewById(R.id.toggleButton1);
+        editMode = false;
+        tb_edit_mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                	editMode = true;
+                	tv_stat2_RW1.setText("true");
+                } else {
+                	// The toggle is disabled
+                	editMode = false;
+                	tv_stat2_RW1.setText("false");
+                }
+            }
+        });
     }
     private String addsign(int stat) {
 		String result = "";
