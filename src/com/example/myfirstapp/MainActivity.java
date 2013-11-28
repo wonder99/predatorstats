@@ -1,7 +1,13 @@
 package com.example.myfirstapp;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -9,15 +15,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 
 public class MainActivity extends Activity {
 
 	Button bt_Row1;
 	Button bt_LW1;
 	Button bt_C1;
-	Button bt_RW1;
+	static Button bt_RW1;
 
 	TextView tv_stat1_LW1;
 	int stat1_LW1;
@@ -36,14 +44,36 @@ public class MainActivity extends Activity {
 	ToggleButton tb_edit_mode;
 	boolean editMode;
 	
+	static Resources res;
 	
+	public static class SelectPlayerDialogFragment extends DialogFragment {
+	    @Override
+	    public Dialog onCreateDialog(Bundle savedInstanceState) {
+	        // Use the Builder class for convenient dialog construction
+	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+	        builder.setTitle(R.string.select_player_prompt);
+	        builder.setItems(R.array.string_array_players, new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int which) {
+		               // The 'which' argument contains the index position
+		               // of the selected item
+	            	   String[] name = res.getStringArray(R.array.string_array_players);
+	            	   bt_RW1.setText(name[which]);
+		           }
+	        	});
+	        return builder.create();
+		}
+	}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
+        res = getResources();
+        
+        final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
         RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
+        //PlayerClickListener playerClickListener = new PlayerClickListener(this);
         
         bt_Row1 = (Button) findViewById(R.id.Button_Row1);
         bt_Row1.setOnTouchListener(rowSwipeDetector);
@@ -52,6 +82,7 @@ public class MainActivity extends Activity {
         tv_stat1_LW1 = (TextView) findViewById(R.id.Stat1_LW1);
         tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
         bt_LW1.setOnTouchListener(playerSwipeDetector);
+        //bt_LW1.setOnClickListener(playerClickListener);
         
         bt_C1 = (Button) findViewById(R.id.Button_C1);
         tv_stat1_C1 = (TextView) findViewById(R.id.Stat1_C1);
@@ -78,21 +109,32 @@ public class MainActivity extends Activity {
         tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
         bt_RW1.setOnTouchListener(playerSwipeDetector);
         
-        tb_edit_mode = (ToggleButton) findViewById(R.id.toggleButton1);
+        tb_edit_mode = (ToggleButton) findViewById(R.id.Button_edit_mode);
         editMode = false;
         tb_edit_mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
                 	editMode = true;
-                	tv_stat2_RW1.setText("true");
+                	bt_RW1.setOnTouchListener(null);
+                	bt_RW1.setOnClickListener(new Button.OnClickListener()  {
+
+						@Override
+						public void onClick(View v) {
+							SelectPlayerDialogFragment dlg_player = new SelectPlayerDialogFragment();
+							dlg_player.show(getFragmentManager(), "PlayerSelectFragment");
+						}
+                	} );
                 } else {
                 	// The toggle is disabled
                 	editMode = false;
-                	tv_stat2_RW1.setText("false");
+                	bt_RW1.setOnTouchListener(playerSwipeDetector);
+                	bt_RW1.setOnClickListener(null);
                 }
             }
-        });
+        } );
+        
+        //sp_player_selector.setOnItemSelectedListener( new View.OnItemSelectedListener )
     }
     private String addsign(int stat) {
 		String result = "";
@@ -104,6 +146,7 @@ public class MainActivity extends Activity {
 			result = "0";
 		return result;
 	}
+
 	public class PlayerSwipeDetector implements View.OnTouchListener {
 
     	static final String logTag = "PlayerSwipeDetector";
@@ -220,7 +263,7 @@ public class MainActivity extends Activity {
 			                } 
 			        }
 		
-		            return true;
+		            return false;
 		        }
     		}
 	    return false;

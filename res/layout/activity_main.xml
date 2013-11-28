@@ -163,18 +163,18 @@
         android:minWidth="0dp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/Edit_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleButton1"
-        android:layout_alignBottom="@+id/toggleButton1"
+        android:layout_alignBaseline="@+id/Button_edit_mode"
+        android:layout_alignBottom="@+id/Button_edit_mode"
         android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/toggleButton1"
+        android:layout_toLeftOf="@+id/Button_edit_mode"
         android:text="@string/tv_EditMode"
         android:textSize="20sp" />
 
     <ToggleButton
-        android:id="@+id/toggleButton1"
+        android:id="@+id/Button_edit_mode"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_alignParentBottom="true"

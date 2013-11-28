@@ -6,5 +6,16 @@
     <string name="playername">McMahon</string>
     <string name="stat_init">+0</string>
     <string name="tv_EditMode">Edit Mode</string>
+    <string name="dialog_fire_missles">Fire Missiles?</string>
+    <string name="fire">Fire!</string>
+    <string name="cancel">Cancel</string>
+    
+    <string-array 
+          name="string_array_players">
+        <item>McMahon</item>
+        <item>Graziano</item>
+        <item>Banks</item>
+        </string-array>
+        <string name="select_player_prompt">Select Player\'s Name</string>
 
 </resources>
