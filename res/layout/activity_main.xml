@@ -7,7 +7,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
+	
+	<ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="50dp"
+	    android:layout_above="@+id/Layout_C1"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:contentDescription="Logo"
+	    android:scaleType="fitCenter"
+	    android:src="@drawable/smha" />
+    
 <!--     First Row of Players -->
     <RelativeLayout
         android:id="@+id/Layout_LW1"
@@ -165,7 +176,8 @@
 
     
 <!--     Second Row of Players -->
-    <RelativeLayout
+
+        <RelativeLayout
         android:id="@+id/Layout_LW2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -521,6 +533,7 @@
             android:text="@string/stat_init"
             android:textColor="#FFFF11"
             android:textSize="12sp" />
+
     </RelativeLayout>
 
     <RelativeLayout
