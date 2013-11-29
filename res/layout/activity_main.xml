@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+<!--     First Row of Players -->
     <RelativeLayout
         android:id="@+id/Layout_LW1"
         android:layout_width="wrap_content"
@@ -162,6 +163,164 @@
         android:minHeight="0dp"
         android:minWidth="0dp" />
 
+    
+<!--     Second Row of Players -->
+    <RelativeLayout
+        android:id="@+id/Layout_LW2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="96dp" >
+
+        <Button
+            android:id="@+id/Button_LW2"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_LW2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LW2"
+            android:layout_alignLeft="@+id/Button_LW2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_LW2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LW2"
+            android:layout_alignRight="@+id/Button_LW2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_C2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_LW2"
+        android:layout_alignBottom="@+id/Layout_LW2"
+        android:layout_toRightOf="@+id/Layout_LW2" >
+
+        <Button
+            android:id="@+id/Button_C2"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_C2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_C2"
+            android:layout_alignLeft="@+id/Button_C2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_C2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_C2"
+            android:layout_alignRight="@+id/Button_C2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_RW2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_C2"
+        android:layout_alignBottom="@+id/Layout_C2"
+        android:layout_toRightOf="@+id/Layout_C2" >
+
+        <Button
+            android:id="@+id/Button_RW2"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_RW2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RW2"
+            android:layout_alignLeft="@+id/Button_RW2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_RW2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RW2"
+            android:layout_alignRight="@+id/Button_RW2"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/Button_Row2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Layout_LW2"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/row_button_75_35"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    
+<!--     Edit Mode Button -->
     <TextView
         android:id="@+id/Edit_mode"
         android:layout_width="wrap_content"
