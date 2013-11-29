@@ -8,21 +8,22 @@
     <string name="tv_EditMode">Edit Mode</string>
 
     <string-array name="string_array_players">
-        <item>McMahon</item>
-        <item>Graziano</item>
         <item>Banks</item>
+        <item>McMahon</item>
+        <item>Hartman</item>
+        <item>Cabana</item>
         <item>St. Pierre</item>
-        <item>Cardo</item>
-        <item>Stauch</item>
         <item>Graham</item>
+        <item>MacKay</item>
+        <item>Stauch</item>
+        <item>Saunders</item>
+        <item>Aitken</item>
+        <item>Graziano</item>
         <item>Duncan</item>
         <item>Burgar</item>
-        <item>Aitken</item>
-        <item>MacKay</item>
-        <item>Saunders</item>
-        <item>Hartman</item>
+        <item>Cardo</item>
         <item>Radley</item>
-        <item>Cabana</item>
+        
 </string-array>
 
     <string name="select_player_prompt">Select Player\'s Name</string>

@@ -7,25 +7,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-	
-	<ImageView
-	    android:id="@+id/imageView1"
-	    android:layout_width="fill_parent"
-	    android:layout_height="50dp"
-	    android:layout_above="@+id/Layout_C1"
-	    android:layout_alignParentTop="true"
-	    android:layout_centerHorizontal="true"
-	    android:contentDescription="Logo"
-	    android:scaleType="fitCenter"
-	    android:src="@drawable/smha" />
     
 <!--     First Row of Players -->
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/predators_logo_full_blurred" />
+
     <RelativeLayout
         android:id="@+id/Layout_LW1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="55dp"
-        android:layout_marginTop="46dp" >
+        android:layout_marginTop="35dp" >
 
         <Button
             android:id="@+id/Button_LW1"
@@ -182,7 +180,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="55dp"
-        android:layout_marginTop="96dp" >
+        android:layout_marginTop="85dp" >
 
         <Button
             android:id="@+id/Button_LW2"
@@ -332,12 +330,13 @@
         android:minWidth="0dp" />
 
 <!--     Third Row of Players -->
+
     <RelativeLayout
         android:id="@+id/Layout_LW3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="55dp"
-        android:layout_marginTop="146dp" >
+        android:layout_marginTop="135dp" >
 
         <Button
             android:id="@+id/Button_LW3"
@@ -493,7 +492,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="95dp"
-        android:layout_marginTop="196dp" >
+        android:layout_marginTop="185dp" >
 
         <Button
             android:id="@+id/Button_LD4"
@@ -601,7 +600,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="95dp"
-        android:layout_marginTop="246dp" >
+        android:layout_marginTop="235dp" >
 
         <Button
             android:id="@+id/Button_LD5"
@@ -708,7 +707,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="95dp"
-        android:layout_marginTop="296dp" >
+        android:layout_marginTop="285dp" >
 
         <Button
             android:id="@+id/Button_LD6"
@@ -822,22 +821,30 @@
         android:text="@string/tv_EditMode"
         android:textSize="20sp" />
 
-    <ToggleButton
-        android:id="@+id/Button_edit_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/Layout_C1"
-        android:layout_marginBottom="54dp"
-        android:minWidth="48dp" />
+        android:layout_alignRight="@+id/Layout_RW3"
+        android:contentDescription="Logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/smha" />
 
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_height="35dp"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignRight="@+id/imageView1"
         android:text="@string/resetStats" />
+
+    <ToggleButton
+        android:id="@+id/Button_edit_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignLeft="@+id/Layout_LD6"
+        android:minWidth="48dp" />
 
 </RelativeLayout>

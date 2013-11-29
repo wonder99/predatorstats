@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
 	Button bt_Row1, bt_Row2, bt_Row3, bt_Row4, bt_Row5, bt_Row6;
 	Button resetStats;
 
+	Activity activity;
+	
 	public class Player {
 		private Button bt_player;
 		private TextView tv_stat1;
@@ -103,8 +105,23 @@ public class MainActivity extends Activity {
 	}
 
 	@Override
+	public void onBackPressed() {
+	    new AlertDialog.Builder(this)
+	           .setMessage("Are you sure you want to exit, and lose the stats?")
+	           .setCancelable(false)
+	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int id) {
+	                    finish();
+	               }
+	           })
+	           .setNegativeButton("No", null)
+	           .show();
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 
 		res = getResources();
@@ -116,12 +133,11 @@ public class MainActivity extends Activity {
 		resetStats.setOnClickListener(new OnClickListener () {
 			@Override
 			public void onClick(View v) {
-				for( int i=0; i<playerList.length; i++ ) {
+				for( int i=0; i<playerList.length; i++ ) 
 					playerList[i].clearStats();
-				}
-			};
+			}
 		});
-
+		
 		RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
 		bt_Row1 = (Button) findViewById(R.id.Button_Row1);
 		bt_Row1.setOnTouchListener(rowSwipeDetector);
@@ -159,9 +175,12 @@ public class MainActivity extends Activity {
 		playerList[13]= new Player(R.id.Button_LD6,R.id.Stat1_LD6,R.id.Stat2_LD6);
 		playerList[14]= new Player(R.id.Button_RD6,R.id.Stat1_RD6, R.id.Stat2_RD6);
 
+		String[] playerNames = res.getStringArray(R.array.string_array_players);
+
 		for( int i=0; i<playerList.length; i++) {
 			playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
 			playerList[i].bt_player.setOnClickListener(null);
+			playerList[i].setName(playerNames[i]);
 		}
 
 		/*
