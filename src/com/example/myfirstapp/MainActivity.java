@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -23,8 +24,8 @@ import android.widget.ToggleButton;
 public class MainActivity extends Activity {
 
 	Button bt_Row1;
-	Button bt_LW1;
-	Button bt_C1;
+	static Button bt_LW1;
+	static Button bt_C1;
 	static Button bt_RW1;
 
 	TextView tv_stat1_LW1;
@@ -45,98 +46,120 @@ public class MainActivity extends Activity {
 	boolean editMode;
 	
 	static Resources res;
+
+	static int editedPlayer;
 	
 	public static class SelectPlayerDialogFragment extends DialogFragment {
-	    @Override
-	    public Dialog onCreateDialog(Bundle savedInstanceState) {
-	        // Use the Builder class for convenient dialog construction
-	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-	        builder.setTitle(R.string.select_player_prompt);
-	        builder.setItems(R.array.string_array_players, new DialogInterface.OnClickListener() {
-	               public void onClick(DialogInterface dialog, int which) {
-		               // The 'which' argument contains the index position
-		               // of the selected item
-	            	   String[] name = res.getStringArray(R.array.string_array_players);
-	            	   bt_RW1.setText(name[which]);
-		           }
-	        	});
-	        return builder.create();
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the Builder class for convenient dialog construction
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setTitle(R.string.select_player_prompt);
+			builder.setItems(R.array.string_array_players, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					// The 'which' argument contains the index position
+					// of the selected item
+					String[] name = res.getStringArray(R.array.string_array_players);
+					switch (editedPlayer) {
+					case R.id.Button_RW1:
+						bt_RW1.setText(name[which]);
+						break;
+					case R.id.Button_C1:
+						bt_C1.setText(name[which]);
+						break;
+					case R.id.Button_LW1:
+						bt_LW1.setText(name[which]);
+						break;
+
+					}
+
+				}
+			});
+			return builder.create();
 		}
 	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        res = getResources();
-        
-        final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
-        RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
-        //PlayerClickListener playerClickListener = new PlayerClickListener(this);
-        
-        bt_Row1 = (Button) findViewById(R.id.Button_Row1);
-        bt_Row1.setOnTouchListener(rowSwipeDetector);
-        
-        bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
-        tv_stat1_LW1 = (TextView) findViewById(R.id.Stat1_LW1);
-        tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-        bt_LW1.setOnTouchListener(playerSwipeDetector);
-        //bt_LW1.setOnClickListener(playerClickListener);
-        
-        bt_C1 = (Button) findViewById(R.id.Button_C1);
-        tv_stat1_C1 = (TextView) findViewById(R.id.Stat1_C1);
-        tv_stat1_C1.setText(Integer.toString(stat1_C1));
-        bt_C1.setOnTouchListener(playerSwipeDetector);
-    
-        bt_RW1 = (Button) findViewById(R.id.Button_RW1);
-        tv_stat1_RW1 = (TextView) findViewById(R.id.Stat1_RW1);
-        tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
-        bt_RW1.setOnTouchListener(playerSwipeDetector);
-        
-        bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
-        tv_stat2_LW1 = (TextView) findViewById(R.id.Stat2_LW1);
-        tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-        bt_LW1.setOnTouchListener(playerSwipeDetector);
-        
-        bt_C1 = (Button) findViewById(R.id.Button_C1);
-        tv_stat2_C1 = (TextView) findViewById(R.id.Stat2_C1);
-        tv_stat2_C1.setText(Integer.toString(stat2_C1));
-        bt_C1.setOnTouchListener(playerSwipeDetector);
-    
-        bt_RW1 = (Button) findViewById(R.id.Button_RW1);
-        tv_stat2_RW1 = (TextView) findViewById(R.id.Stat2_RW1);
-        tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
-        bt_RW1.setOnTouchListener(playerSwipeDetector);
-        
-        tb_edit_mode = (ToggleButton) findViewById(R.id.Button_edit_mode);
-        editMode = false;
-        tb_edit_mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // The toggle is enabled
-                	editMode = true;
-                	bt_RW1.setOnTouchListener(null);
-                	bt_RW1.setOnClickListener(new Button.OnClickListener()  {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-						@Override
-						public void onClick(View v) {
-							SelectPlayerDialogFragment dlg_player = new SelectPlayerDialogFragment();
-							dlg_player.show(getFragmentManager(), "PlayerSelectFragment");
-						}
-                	} );
-                } else {
-                	// The toggle is disabled
-                	editMode = false;
-                	bt_RW1.setOnTouchListener(playerSwipeDetector);
-                	bt_RW1.setOnClickListener(null);
-                }
-            }
-        } );
-        
-        //sp_player_selector.setOnItemSelectedListener( new View.OnItemSelectedListener )
-    }
-    private String addsign(int stat) {
+		res = getResources();
+
+		final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
+		RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
+
+		bt_Row1 = (Button) findViewById(R.id.Button_Row1);
+		bt_Row1.setOnTouchListener(rowSwipeDetector);
+
+		bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
+		tv_stat1_LW1 = (TextView) findViewById(R.id.Stat1_LW1);
+		tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
+		bt_LW1.setOnTouchListener(playerSwipeDetector);
+		//bt_LW1.setOnClickListener(playerClickListener);
+
+		bt_C1 = (Button) findViewById(R.id.Button_C1);
+		tv_stat1_C1 = (TextView) findViewById(R.id.Stat1_C1);
+		tv_stat1_C1.setText(Integer.toString(stat1_C1));
+		bt_C1.setOnTouchListener(playerSwipeDetector);
+
+		bt_RW1 = (Button) findViewById(R.id.Button_RW1);
+		tv_stat1_RW1 = (TextView) findViewById(R.id.Stat1_RW1);
+		tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+		bt_RW1.setOnTouchListener(playerSwipeDetector);
+
+		bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
+		tv_stat2_LW1 = (TextView) findViewById(R.id.Stat2_LW1);
+		tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
+		bt_LW1.setOnTouchListener(playerSwipeDetector);
+
+		bt_C1 = (Button) findViewById(R.id.Button_C1);
+		tv_stat2_C1 = (TextView) findViewById(R.id.Stat2_C1);
+		tv_stat2_C1.setText(Integer.toString(stat2_C1));
+		bt_C1.setOnTouchListener(playerSwipeDetector);
+
+		bt_RW1 = (Button) findViewById(R.id.Button_RW1);
+		tv_stat2_RW1 = (TextView) findViewById(R.id.Stat2_RW1);
+		tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+		bt_RW1.setOnTouchListener(playerSwipeDetector);
+
+		tb_edit_mode = (ToggleButton) findViewById(R.id.Button_edit_mode);
+		editMode = false;
+		tb_edit_mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					// The toggle is enabled
+					editMode = true;
+					bt_RW1.setOnTouchListener(null);
+					bt_RW1.setOnClickListener(playerClickListener);
+					bt_C1.setOnTouchListener(null);
+					bt_C1.setOnClickListener(playerClickListener);
+					bt_LW1.setOnTouchListener(null);
+					bt_LW1.setOnClickListener(playerClickListener);
+				} else {
+					// The toggle is disabled
+					editMode = false;
+					bt_RW1.setOnTouchListener(playerSwipeDetector);
+					bt_RW1.setOnClickListener(null);
+					bt_C1.setOnTouchListener(playerSwipeDetector);
+					bt_C1.setOnClickListener(null);
+					bt_LW1.setOnTouchListener(playerSwipeDetector);
+					bt_LW1.setOnClickListener(null);
+				}
+			}
+		} );
+	}
+
+	private OnClickListener playerClickListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			SelectPlayerDialogFragment dlg_player = new SelectPlayerDialogFragment();
+			editedPlayer = v.getId();
+			dlg_player.show(getFragmentManager(), Integer.toString(v.getId()) );
+		}	
+	};
+	
+	private String addsign(int stat) {
 		String result = "";
 		if( stat > 0 ) 
 			result = "+" + Integer.toString(stat);
