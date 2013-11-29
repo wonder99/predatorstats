@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Hockey Stats</string>
+    <string name="app_name">Predator Stats</string>
     <string name="action_settings">Settings</string>
-    <string name="playername">McMahon</string>
+    <string name="playername">default</string>
     <string name="stat_init">+0</string>
     <string name="tv_EditMode">Edit Mode</string>
-    <string name="dialog_fire_missles">Fire Missiles?</string>
-    <string name="fire">Fire!</string>
-    <string name="cancel">Cancel</string>
 
     <string-array name="string_array_players">
         <item>McMahon</item>
@@ -21,7 +18,12 @@
         <item>Duncan</item>
         <item>Burgar</item>
         <item>Aitken</item>
-    </string-array>
+        <item>MacKay</item>
+        <item>Saunders</item>
+        <item>Hartman</item>
+        <item>Radley</item>
+        <item>Cabana</item>
+</string-array>
 
     <string name="select_player_prompt">Select Player\'s Name</string>
 

@@ -1,4 +1,6 @@
-package com.example.myfirstapp;
+package com.wonder99.predatorstats;
+
+import com.wonder99.predatorstats.R;
 
 import android.os.Bundle;
 import android.app.Activity;
