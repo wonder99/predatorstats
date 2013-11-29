@@ -475,6 +475,328 @@
         android:minWidth="0dp" />
 
     
+<!--     Fourth Row of Players -->
+    <RelativeLayout
+        android:id="@+id/Layout_LD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="196dp" >
+
+        <Button
+            android:id="@+id/Button_LD4"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_LD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD4"
+            android:layout_alignLeft="@+id/Button_LD4"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_LD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD4"
+            android:layout_alignRight="@+id/Button_LD4"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_RD4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_LD4"
+        android:layout_alignBottom="@+id/Layout_LD4"
+        android:layout_toRightOf="@+id/Layout_LD4" >
+
+        <Button
+            android:id="@+id/Button_RD4"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_RD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD4"
+            android:layout_alignLeft="@+id/Button_RD4"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_RD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD4"
+            android:layout_alignRight="@+id/Button_RD4"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/Button_Row4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Layout_LD4"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/row_button_75_35"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+<!--     Fifth Row of Players -->
+    <RelativeLayout
+        android:id="@+id/Layout_LD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="246dp" >
+
+        <Button
+            android:id="@+id/Button_LD5"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_LD5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD5"
+            android:layout_alignLeft="@+id/Button_LD5"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_LD5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD5"
+            android:layout_alignRight="@+id/Button_LD5"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_RD5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_LD5"
+        android:layout_alignBottom="@+id/Layout_LD5"
+        android:layout_toRightOf="@+id/Layout_LD5" >
+
+        <Button
+            android:id="@+id/Button_RD5"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_RD5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD5"
+            android:layout_alignLeft="@+id/Button_RD5"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_RD5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD5"
+            android:layout_alignRight="@+id/Button_RD5"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/Button_Row5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Layout_LD5"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/row_button_75_35"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+<!--     Sixth Row of Players -->
+    <RelativeLayout
+        android:id="@+id/Layout_LD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="296dp" >
+
+        <Button
+            android:id="@+id/Button_LD6"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_LD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD6"
+            android:layout_alignLeft="@+id/Button_LD6"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_LD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_LD6"
+            android:layout_alignRight="@+id/Button_LD6"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Layout_RD6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Layout_LD6"
+        android:layout_alignBottom="@+id/Layout_LD6"
+        android:layout_toRightOf="@+id/Layout_LD6" >
+
+        <Button
+            android:id="@+id/Button_RD6"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_margin="3sp"
+            android:background="@drawable/button_90_45"
+            android:gravity="center_horizontal|top"
+            android:lines="1"
+            android:paddingTop="3dp"
+            android:text="@string/playername"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat1_RD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD6"
+            android:layout_alignLeft="@+id/Button_RD6"
+            android:layout_marginBottom="3sp"
+            android:layout_marginLeft="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Stat2_RD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Button_RD6"
+            android:layout_alignRight="@+id/Button_RD6"
+            android:layout_marginBottom="3sp"
+            android:layout_marginRight="15sp"
+            android:clickable="false"
+            android:text="@string/stat_init"
+            android:textColor="#FFFF11"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/Button_Row6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Layout_LD6"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/row_button_75_35"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+    
 <!--     Edit Mode Button -->
     <TextView
         android:id="@+id/Edit_mode"
@@ -493,7 +815,7 @@
         android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/Layout_C1"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="54dp"
         android:minWidth="48dp" />
 
     <Button
@@ -502,7 +824,7 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/resetStats" />
 
 </RelativeLayout>

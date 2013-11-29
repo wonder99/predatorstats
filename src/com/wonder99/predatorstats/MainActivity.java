@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
-	Button bt_Row1, bt_Row2, bt_Row3;
+	Button bt_Row1, bt_Row2, bt_Row3, bt_Row4, bt_Row5, bt_Row6;
 	Button resetStats;
 
 	public class Player {
@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	static Player[] playerList = new Player [9];
+	static Player[] playerList = new Player [15];
 	
 	ToggleButton tb_edit_mode;
 	boolean editMode;
@@ -96,20 +96,6 @@ public class MainActivity extends Activity {
 					// of the selected item
 					String[] name = res.getStringArray(R.array.string_array_players);
 					playerList[editedPlayer].setName(name[which]);
-					
-//					switch (editedPlayer) {
-//					case R.id.Button_RW1:
-//						playerList[2].setName(name[which]);
-//						break;
-//					case R.id.Button_C1:
-//						playerList[1].setName(name[which]);
-//						break;
-//					case R.id.Button_LW1:
-//						playerList[0].setName(name[which]);
-//						break;
-//
-//					}
-
 				}
 			});
 			return builder.create();
@@ -143,6 +129,12 @@ public class MainActivity extends Activity {
 		bt_Row2.setOnTouchListener(rowSwipeDetector);
 		bt_Row3 = (Button) findViewById(R.id.Button_Row3);
 		bt_Row3.setOnTouchListener(rowSwipeDetector);
+		bt_Row4 = (Button) findViewById(R.id.Button_Row4);
+		bt_Row4.setOnTouchListener(rowSwipeDetector);
+		bt_Row5 = (Button) findViewById(R.id.Button_Row5);
+		bt_Row5.setOnTouchListener(rowSwipeDetector);
+		bt_Row6 = (Button) findViewById(R.id.Button_Row6);
+		bt_Row6.setOnTouchListener(rowSwipeDetector);
 		
 		final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
 		
@@ -157,6 +149,15 @@ public class MainActivity extends Activity {
 		playerList[6] = new Player(R.id.Button_LW3,R.id.Stat1_LW3,R.id.Stat2_LW3);
 		playerList[7] = new Player(R.id.Button_C3, R.id.Stat1_C3, R.id.Stat2_C3);
 		playerList[8] = new Player(R.id.Button_RW3,R.id.Stat1_RW3,R.id.Stat2_RW3);
+
+		playerList[9] = new Player(R.id.Button_LD4,R.id.Stat1_LD4,R.id.Stat2_LD4);
+		playerList[10]= new Player(R.id.Button_RD4,R.id.Stat1_RD4, R.id.Stat2_RD4);
+
+		playerList[11]= new Player(R.id.Button_LD5,R.id.Stat1_LD5,R.id.Stat2_LD5);
+		playerList[12]= new Player(R.id.Button_RD5,R.id.Stat1_RD5, R.id.Stat2_RD5);
+
+		playerList[13]= new Player(R.id.Button_LD6,R.id.Stat1_LD6,R.id.Stat2_LD6);
+		playerList[14]= new Player(R.id.Button_RD6,R.id.Stat1_RD6, R.id.Stat2_RD6);
 
 		for( int i=0; i<playerList.length; i++) {
 			playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
@@ -285,9 +286,6 @@ public class MainActivity extends Activity {
 		            float deltaX = downX - upX;
 		            float deltaY = downY - upY;
 		            	
-//                    Log.i(logTag, "Swipe was " + Math.abs(deltaX) + " wide and " + Math.abs(deltaY) + "long.  " );
-//                    Log.i(logTag, "X1=" + downX + ", Y1=" + downY + ", X2=" + upX + ", Y2=" + upY );
-
 		            // swipe horizontal?
 		            if( (Math.abs(deltaX) > Math.abs(deltaY)) & (Math.abs(deltaX) > MIN_DISTANCE) ){
 		                // left or right
@@ -301,7 +299,6 @@ public class MainActivity extends Activity {
 		                    return false; // We don't consume the event
 			                } 
 			        }
-		
 		            return false;
 		        }
     		}
@@ -335,6 +332,18 @@ public class MainActivity extends Activity {
 			    	for( int i=6; i<9; i++ ) 
 			    		playerList[i].decrStat1();
 			    	break;
+			    case R.id.Button_Row4:
+			    	for( int i=9; i<11; i++ ) 
+			    		playerList[i].decrStat1();
+			    	break;
+			    case R.id.Button_Row5:
+			    	for( int i=11; i<13; i++ ) 
+			    		playerList[i].decrStat1();
+			    	break;
+			    case R.id.Button_Row6:
+			    	for( int i=13; i<15; i++ ) 
+			    		playerList[i].decrStat1();
+			    	break;
 		    }
 		}
 		
@@ -351,6 +360,18 @@ public class MainActivity extends Activity {
 			    	break;
 			    case R.id.Button_Row3:
 			    	for( int i=6; i<9; i++ ) 
+			    		playerList[i].incrStat1();
+			    	break;
+			    case R.id.Button_Row4:
+			    	for( int i=9; i<11; i++ ) 
+			    		playerList[i].incrStat1();
+			    	break;
+			    case R.id.Button_Row5:
+			    	for( int i=11; i<13; i++ ) 
+			    		playerList[i].incrStat1();
+			    	break;
+			    case R.id.Button_Row6:
+			    	for( int i=13; i<15; i++ ) 
 			    		playerList[i].incrStat1();
 			    	break;
 		    }
@@ -371,6 +392,18 @@ public class MainActivity extends Activity {
 			    	for( int i=6; i<9; i++ ) 
 			    		playerList[i].decrStat2();
 			    	break;
+			    case R.id.Button_Row4:
+			    	for( int i=9; i<11; i++ ) 
+			    		playerList[i].decrStat2();
+			    	break;
+			    case R.id.Button_Row5:
+			    	for( int i=11; i<13; i++ ) 
+			    		playerList[i].decrStat2();
+			    	break;
+			    case R.id.Button_Row6:
+			    	for( int i=13; i<15; i++ ) 
+			    		playerList[i].decrStat2();
+			    	break;
 		    }
 		}
 		
@@ -387,6 +420,18 @@ public class MainActivity extends Activity {
 			    	break;
 			    case R.id.Button_Row3:
 			    	for( int i=6; i<9; i++ ) 
+			    		playerList[i].incrStat2();
+			    	break;
+			    case R.id.Button_Row4:
+			    	for( int i=9; i<11; i++ ) 
+			    		playerList[i].incrStat2();
+			    	break;
+			    case R.id.Button_Row5:
+			    	for( int i=11; i<13; i++ ) 
+			    		playerList[i].incrStat2();
+			    	break;
+			    case R.id.Button_Row6:
+			    	for( int i=13; i<15; i++ ) 
 			    		playerList[i].incrStat2();
 			    	break;
 		    }
@@ -424,6 +469,24 @@ public class MainActivity extends Activity {
 		                    cView.setBackgroundResource(R.drawable.button_90_45_highlight);
 		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
 		                    break;
+		            	case R.id.Button_Row4:
+		            		lwView = (View) findViewById(R.id.Button_LD4);
+		            		rwView = (View) findViewById(R.id.Button_RD4);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    break;
+		            	case R.id.Button_Row5:
+		            		lwView = (View) findViewById(R.id.Button_LD5);
+		            		rwView = (View) findViewById(R.id.Button_RD5);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    break;
+		            	case R.id.Button_Row6:
+		            		lwView = (View) findViewById(R.id.Button_LD6);
+		            		rwView = (View) findViewById(R.id.Button_RD6);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    break;
 		            }
 		            return true;
 		        }
@@ -459,12 +522,29 @@ public class MainActivity extends Activity {
 		                    cView.setBackgroundResource(R.drawable.button_90_45);
 		                    rwView.setBackgroundResource(R.drawable.button_90_45);
 		                    break;
-		            }
+		            	case R.id.Button_Row4:
+		            		lwView = (View) findViewById(R.id.Button_LD4);
+		            		rwView = (View) findViewById(R.id.Button_RD4);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45);
+		                    break;
+	            		case R.id.Button_Row5:
+	            			lwView = (View) findViewById(R.id.Button_LD5);
+	            			rwView = (View) findViewById(R.id.Button_RD5);
+	            			lwView.setBackgroundResource(R.drawable.button_90_45);
+	            			rwView.setBackgroundResource(R.drawable.button_90_45);
+		            		break;
+	            		case R.id.Button_Row6:
+	            			lwView = (View) findViewById(R.id.Button_LD6);
+	            			rwView = (View) findViewById(R.id.Button_RD6);
+	            			lwView.setBackgroundResource(R.drawable.button_90_45);
+	            			rwView.setBackgroundResource(R.drawable.button_90_45);
+		            		break;
 
+		            }
 		            
                     Log.i(logTag, "Swipe was " + Math.abs(deltaX) + " wide and " + Math.abs(deltaY) + "long.  " );
                     Log.i(logTag, "X1=" + downX + ", Y1=" + downY + ", X2=" + upX + ", Y2=" + upY );
-                    
 
 		            // swipe horizontal?
 		            if( (Math.abs(deltaX) > Math.abs(deltaY)) & (Math.abs(deltaX) > MIN_DISTANCE) ){
