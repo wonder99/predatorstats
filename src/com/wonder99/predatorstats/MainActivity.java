@@ -23,55 +23,49 @@ import android.widget.ToggleButton;
 public class MainActivity extends Activity {
 
 	Button bt_Row1;
-/*
-	static Button bt_LW1;
-	static Button bt_C1;
-	static Button bt_RW1;
+	Button resetStats;
 
-	static Button[] playerButtons = new Button [15];
-	static TextView[] tv_stats1 = new TextView [15];
-	static TextView[] tv_stats2 = new TextView [15];
-		
-	static int[] stat1 = new int [15];
-	static int[] stat2 = new int [15];
-	
-	TextView tv_stat1_LW1;
-	int stat1_LW1;
-	TextView tv_stat1_C1;
-	int stat1_C1;
-	TextView tv_stat1_RW1;
-	int stat1_RW1;
-	
-	TextView tv_stat2_LW1;
-	int stat2_LW1;
-	TextView tv_stat2_C1;
-	int stat2_C1;
-	TextView tv_stat2_RW1;
-	int stat2_RW1;
-	*/
 	public class Player {
-		public Button bt_player;
-		public TextView tv_stat1;
-		public TextView tv_stat2;
-		int stat1;
-		int stat2;
-				
+		private Button bt_player;
+		private TextView tv_stat1;
+		private TextView tv_stat2;
+		private int stat1;
+		private int stat2;
+			
+		public Player( int playerButtonId, int stat1ViewId, int stat2ViewId) {
+			bt_player = (Button) findViewById(playerButtonId);
+			tv_stat1 = (TextView) findViewById(stat1ViewId);
+			tv_stat2 = (TextView) findViewById(stat2ViewId);
+			}
+		
 		public void set_bt(View v) {
 			bt_player = (Button) v;
 		}
-		public void incr_stat1 () {
+		public void clearStats() {
+			stat1 = 0;
+			stat2 = 0;
+			tv_stat1.setText(Integer.toString(stat1));
+			tv_stat2.setText(Integer.toString(stat2));
+		}
+		public int getStat1() {
+			return stat1;
+		}
+		public int getStat2() {
+			return stat2;
+		}
+		public void incrStat1 () {
 			stat1++;
 			tv_stat1.setText(Integer.toString(stat1));
 		}
-		public void decr_stat1 () {
+		public void decrStat1 () {
 			stat1--;
 			tv_stat1.setText(Integer.toString(stat1));
 		}
-		public void incr_stat2 () {
+		public void incrStat2 () {
 			stat2++;
 			tv_stat2.setText(Integer.toString(stat2));
 		}
-		public void decr_stat2 () {
+		public void decrStat2 () {
 			stat2--;
 			tv_stat2.setText(Integer.toString(stat2));
 		}
@@ -127,28 +121,24 @@ public class MainActivity extends Activity {
 
 		res = getResources();
 		
+		resetStats = (Button) findViewById(R.id.buttonReset);
+		resetStats.setOnClickListener(new OnClickListener () {
+
+			@Override
+			public void onClick(View v) {
+				for( int i=0; i<3; i++ ) {
+					playerList[i].clearStats();
+				}
+			};
+		});
+
 		final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
 		RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
 		
-		Button testbut = (Button) findViewById(R.id.Button_LW1);
-
-		for( int i=0; i<playerList.length; i++) {
-			playerList[i] = new Player();
-		}
-
-		playerList[0].bt_player = (Button)   findViewById(R.id.Button_LW1);
-		playerList[0].tv_stat1  = (TextView) findViewById(R.id.Stat1_LW1);
-		playerList[0].tv_stat2  = (TextView) findViewById(R.id.Stat2_LW1);
-		
-		playerList[1].bt_player = (Button)   findViewById(R.id.Button_C1);
-		playerList[1].tv_stat1  = (TextView) findViewById(R.id.Stat1_C1);
-		playerList[1].tv_stat2  = (TextView) findViewById(R.id.Stat2_C1);
-
-		playerList[2].bt_player = (Button)   findViewById(R.id.Button_RW1);
-		playerList[2].tv_stat1  = (TextView) findViewById(R.id.Stat1_RW1);
-		playerList[2].tv_stat2  = (TextView) findViewById(R.id.Stat2_RW1);
-
-		
+		playerList[0] = new Player(R.id.Button_LW1,R.id.Stat1_LW1,R.id.Stat2_LW1);
+		playerList[1] = new Player(R.id.Button_C1, R.id.Stat1_C1, R.id.Stat2_C1);
+		playerList[2] = new Player(R.id.Button_RW1,R.id.Stat1_RW1,R.id.Stat2_RW1);
+	
 		for( int i=0; i<3; i++) {
 			playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
 			playerList[i].bt_player.setOnClickListener(null);
@@ -214,13 +204,13 @@ public class MainActivity extends Activity {
     		Log.i(logTag, "RightToLeftSwipe! of ");
     		switch( v.getId() ) {
     		case R.id.Button_LW1:
-    			playerList[0].decr_stat1();
+    			playerList[0].decrStat1();
     			break;
     		case R.id.Button_C1:
-    			playerList[1].decr_stat1();
+    			playerList[1].decrStat1();
     			break;
     		case R.id.Button_RW1:
-    			playerList[2].decr_stat1();
+    			playerList[2].decrStat1();
     			break;
     		}
     	}
@@ -229,13 +219,13 @@ public class MainActivity extends Activity {
     		Log.i(logTag, "LeftToRightSwipe!");
     		switch( v.getId() ) {
     		case R.id.Button_LW1:
-    			playerList[0].incr_stat1();
+    			playerList[0].incrStat1();
     			break;
     		case R.id.Button_C1:
-    			playerList[1].incr_stat1();
+    			playerList[1].incrStat1();
     			break;
     		case R.id.Button_RW1:
-    			playerList[2].incr_stat1();
+    			playerList[2].incrStat1();
     			break;
     		}
     	}
@@ -244,13 +234,13 @@ public class MainActivity extends Activity {
     		Log.i(logTag, "onTopToBottomSwipe!");
     		switch( v.getId() ) {
     		case R.id.Button_LW1:
-    			playerList[0].decr_stat2();
+    			playerList[0].decrStat2();
     			break;
     		case R.id.Button_C1:
-    			playerList[1].decr_stat2();
+    			playerList[1].decrStat2();
     			break;
     		case R.id.Button_RW1:
-    			playerList[2].decr_stat2();
+    			playerList[2].decrStat2();
     			break;
     		}
     	}
@@ -259,13 +249,13 @@ public class MainActivity extends Activity {
     		Log.i(logTag, "onBottomToTopSwipe!");
     		switch( v.getId() ) {
     		case R.id.Button_LW1:
-    			playerList[0].incr_stat2();
+    			playerList[0].incrStat2();
     			break;
     		case R.id.Button_C1:
-    			playerList[1].incr_stat2();
+    			playerList[1].incrStat2();
     			break;
     		case R.id.Button_RW1:
-    			playerList[2].incr_stat2();
+    			playerList[2].incrStat2();
     			break;
     		}		}
 
@@ -313,7 +303,7 @@ public class MainActivity extends Activity {
 
     	static final String logTag = "RowSwipeDetector";
     	private Activity activity;
-    	static final int MIN_DISTANCE = 50;
+    	static final int MIN_DISTANCE = 30;
     	private float downX, downY, upX, upY;
 
     	public RowSwipeDetector(Activity activity){
@@ -325,7 +315,7 @@ public class MainActivity extends Activity {
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
 			    	for( int i=0; i<3; i++ ) 
-			    		playerList[i].decr_stat1();
+			    		playerList[i].decrStat1();
 			    	break;
 		    }
 		}
@@ -335,7 +325,7 @@ public class MainActivity extends Activity {
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
 			    	for( int i=0; i<3; i++ ) 
-			    		playerList[i].incr_stat1();
+			    		playerList[i].incrStat1();
 			    	break;
 		    }
 		}
@@ -345,7 +335,7 @@ public class MainActivity extends Activity {
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
 			    	for( int i=0; i<3; i++ ) 
-			    		playerList[i].decr_stat2();
+			    		playerList[i].decrStat2();
 			    	break;
 		    }
 		}
@@ -355,7 +345,7 @@ public class MainActivity extends Activity {
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
 			    	for( int i=0; i<3; i++ ) 
-			    		playerList[i].incr_stat2();
+			    		playerList[i].incrStat2();
 			    	break;
 		    }
 		}

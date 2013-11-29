@@ -27,4 +27,6 @@
 
     <string name="select_player_prompt">Select Player\'s Name</string>
 
+    <string name="resetStats">Reset Stats</string>
+
 </resources>
