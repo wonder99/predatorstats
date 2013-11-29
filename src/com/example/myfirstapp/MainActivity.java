@@ -1,14 +1,12 @@
 package com.example.myfirstapp;
 
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -24,10 +21,18 @@ import android.widget.ToggleButton;
 public class MainActivity extends Activity {
 
 	Button bt_Row1;
+/*
 	static Button bt_LW1;
 	static Button bt_C1;
 	static Button bt_RW1;
 
+	static Button[] playerButtons = new Button [15];
+	static TextView[] tv_stats1 = new TextView [15];
+	static TextView[] tv_stats2 = new TextView [15];
+		
+	static int[] stat1 = new int [15];
+	static int[] stat2 = new int [15];
+	
 	TextView tv_stat1_LW1;
 	int stat1_LW1;
 	TextView tv_stat1_C1;
@@ -41,6 +46,40 @@ public class MainActivity extends Activity {
 	int stat2_C1;
 	TextView tv_stat2_RW1;
 	int stat2_RW1;
+	*/
+	public class Player {
+		public Button bt_player;
+		public TextView tv_stat1;
+		public TextView tv_stat2;
+		int stat1;
+		int stat2;
+				
+		public void set_bt(View v) {
+			bt_player = (Button) v;
+		}
+		public void incr_stat1 () {
+			stat1++;
+			tv_stat1.setText(Integer.toString(stat1));
+		}
+		public void decr_stat1 () {
+			stat1--;
+			tv_stat1.setText(Integer.toString(stat1));
+		}
+		public void incr_stat2 () {
+			stat2++;
+			tv_stat2.setText(Integer.toString(stat2));
+		}
+		public void decr_stat2 () {
+			stat2--;
+			tv_stat2.setText(Integer.toString(stat2));
+		}
+		public void setName (String newName) {
+			bt_player.setText(newName);
+		}
+		
+	}
+	
+	static Player[] playerList = new Player [3];
 	
 	ToggleButton tb_edit_mode;
 	boolean editMode;
@@ -62,13 +101,13 @@ public class MainActivity extends Activity {
 					String[] name = res.getStringArray(R.array.string_array_players);
 					switch (editedPlayer) {
 					case R.id.Button_RW1:
-						bt_RW1.setText(name[which]);
+						playerList[2].setName(name[which]);
 						break;
 					case R.id.Button_C1:
-						bt_C1.setText(name[which]);
+						playerList[1].setName(name[which]);
 						break;
 					case R.id.Button_LW1:
-						bt_LW1.setText(name[which]);
+						playerList[0].setName(name[which]);
 						break;
 
 					}
@@ -85,44 +124,36 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		res = getResources();
-
+		
 		final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
 		RowSwipeDetector rowSwipeDetector = new RowSwipeDetector(this);
+		
+		Button testbut = (Button) findViewById(R.id.Button_LW1);
+
+		for( int i=0; i<playerList.length; i++) {
+			playerList[i] = new Player();
+		}
+
+		playerList[0].bt_player = (Button)   findViewById(R.id.Button_LW1);
+		playerList[0].tv_stat1  = (TextView) findViewById(R.id.Stat1_LW1);
+		playerList[0].tv_stat2  = (TextView) findViewById(R.id.Stat2_LW1);
+		
+		playerList[1].bt_player = (Button)   findViewById(R.id.Button_C1);
+		playerList[1].tv_stat1  = (TextView) findViewById(R.id.Stat1_C1);
+		playerList[1].tv_stat2  = (TextView) findViewById(R.id.Stat2_C1);
+
+		playerList[2].bt_player = (Button)   findViewById(R.id.Button_RW1);
+		playerList[2].tv_stat1  = (TextView) findViewById(R.id.Stat1_RW1);
+		playerList[2].tv_stat2  = (TextView) findViewById(R.id.Stat2_RW1);
+
+		
+		for( int i=0; i<3; i++) {
+			playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
+			playerList[i].bt_player.setOnClickListener(null);
+		}
 
 		bt_Row1 = (Button) findViewById(R.id.Button_Row1);
 		bt_Row1.setOnTouchListener(rowSwipeDetector);
-
-		bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
-		tv_stat1_LW1 = (TextView) findViewById(R.id.Stat1_LW1);
-		tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-		bt_LW1.setOnTouchListener(playerSwipeDetector);
-		//bt_LW1.setOnClickListener(playerClickListener);
-
-		bt_C1 = (Button) findViewById(R.id.Button_C1);
-		tv_stat1_C1 = (TextView) findViewById(R.id.Stat1_C1);
-		tv_stat1_C1.setText(Integer.toString(stat1_C1));
-		bt_C1.setOnTouchListener(playerSwipeDetector);
-
-		bt_RW1 = (Button) findViewById(R.id.Button_RW1);
-		tv_stat1_RW1 = (TextView) findViewById(R.id.Stat1_RW1);
-		tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
-		bt_RW1.setOnTouchListener(playerSwipeDetector);
-
-		bt_LW1 = (Button) findViewById(R.id.Button_LW1);    
-		tv_stat2_LW1 = (TextView) findViewById(R.id.Stat2_LW1);
-		tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-		bt_LW1.setOnTouchListener(playerSwipeDetector);
-
-		bt_C1 = (Button) findViewById(R.id.Button_C1);
-		tv_stat2_C1 = (TextView) findViewById(R.id.Stat2_C1);
-		tv_stat2_C1.setText(Integer.toString(stat2_C1));
-		bt_C1.setOnTouchListener(playerSwipeDetector);
-
-		bt_RW1 = (Button) findViewById(R.id.Button_RW1);
-		tv_stat2_RW1 = (TextView) findViewById(R.id.Stat2_RW1);
-		tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
-		bt_RW1.setOnTouchListener(playerSwipeDetector);
-
 		tb_edit_mode = (ToggleButton) findViewById(R.id.Button_edit_mode);
 		editMode = false;
 		tb_edit_mode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -130,21 +161,17 @@ public class MainActivity extends Activity {
 				if (isChecked) {
 					// The toggle is enabled
 					editMode = true;
-					bt_RW1.setOnTouchListener(null);
-					bt_RW1.setOnClickListener(playerClickListener);
-					bt_C1.setOnTouchListener(null);
-					bt_C1.setOnClickListener(playerClickListener);
-					bt_LW1.setOnTouchListener(null);
-					bt_LW1.setOnClickListener(playerClickListener);
+			  	for( int i=0; i<playerList.length; i++) {
+						playerList[i].bt_player.setOnTouchListener(null);
+						playerList[i].bt_player.setOnClickListener(playerClickListener);
+					}
 				} else {
 					// The toggle is disabled
 					editMode = false;
-					bt_RW1.setOnTouchListener(playerSwipeDetector);
-					bt_RW1.setOnClickListener(null);
-					bt_C1.setOnTouchListener(playerSwipeDetector);
-					bt_C1.setOnClickListener(null);
-					bt_LW1.setOnTouchListener(playerSwipeDetector);
-					bt_LW1.setOnClickListener(null);
+					for( int i=0; i<playerList.length; i++) {
+						playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
+						playerList[i].bt_player.setOnClickListener(null);
+					}
 				}
 			}
 		} );
@@ -174,84 +201,71 @@ public class MainActivity extends Activity {
 
     	static final String logTag = "PlayerSwipeDetector";
     	private Activity activity;
-    	static final int MIN_DISTANCE = 50;
+    	static final int MIN_DISTANCE = 30;
     	private float downX, downY, upX, upY;
 
     	public PlayerSwipeDetector(Activity activity){
     	    this.activity = activity;
     	}
 
-		public void onRightToLeftSwipe(View v){
-		    Log.i(logTag, "RightToLeftSwipe! of ");
-		    switch( v.getId() ) {
-			    case R.id.Button_LW1:
-			    	stat1_LW1--; 
-			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-			    	break;
-			    case R.id.Button_C1:
-			    	stat1_C1--; 
-			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
-			    	break;
-			    case R.id.Button_RW1:
-			    	stat1_RW1--;
-			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
-			    	break;
-		    }
-		}
-		
-		public void onLeftToRightSwipe(View v){
-		    Log.i(logTag, "LeftToRightSwipe!");
-		    switch( v.getId() ) {
-			    case R.id.Button_LW1:
-			    	stat1_LW1++; 
-			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-			    	break;
-			    case R.id.Button_C1:
-			    	stat1_C1++; 
-			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
-			    	break;
-			    case R.id.Button_RW1:
-			    	stat1_RW1++;
-			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
-			    	break;
-		    }
-		}
-		
-		public void onTopToBottomSwipe(View v){
-		    Log.i(logTag, "onTopToBottomSwipe!");
-		    switch( v.getId() ) {
-			    case R.id.Button_LW1:
-			    	stat2_LW1--; 
-			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-			    	break;
-			    case R.id.Button_C1:
-			    	stat2_C1--; 
-			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
-			    	break;
-			    case R.id.Button_RW1:
-			    	stat2_RW1--;
-			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
-			    	break;
-		    }
-		}
-		
-		public void onBottomToTopSwipe(View v){
-		    Log.i(logTag, "onBottomToTopSwipe!");
-		    switch( v.getId() ) {
-			    case R.id.Button_LW1:
-			    	stat2_LW1++; 
-			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-			    	break;
-			    case R.id.Button_C1:
-			    	stat2_C1++; 
-			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
-			    	break;
-			    case R.id.Button_RW1:
-			    	stat2_RW1++;
-			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
-			    	break;
-		    }
-		}
+    	public void onRightToLeftSwipe(View v){
+    		Log.i(logTag, "RightToLeftSwipe! of ");
+    		switch( v.getId() ) {
+    		case R.id.Button_LW1:
+    			playerList[0].decr_stat1();
+    			break;
+    		case R.id.Button_C1:
+    			playerList[1].decr_stat1();
+    			break;
+    		case R.id.Button_RW1:
+    			playerList[2].decr_stat1();
+    			break;
+    		}
+    	}
+
+    	public void onLeftToRightSwipe(View v){
+    		Log.i(logTag, "LeftToRightSwipe!");
+    		switch( v.getId() ) {
+    		case R.id.Button_LW1:
+    			playerList[0].incr_stat1();
+    			break;
+    		case R.id.Button_C1:
+    			playerList[1].incr_stat1();
+    			break;
+    		case R.id.Button_RW1:
+    			playerList[2].incr_stat1();
+    			break;
+    		}
+    	}
+
+    	public void onTopToBottomSwipe(View v){
+    		Log.i(logTag, "onTopToBottomSwipe!");
+    		switch( v.getId() ) {
+    		case R.id.Button_LW1:
+    			playerList[0].decr_stat2();
+    			break;
+    		case R.id.Button_C1:
+    			playerList[1].decr_stat2();
+    			break;
+    		case R.id.Button_RW1:
+    			playerList[2].decr_stat2();
+    			break;
+    		}
+    	}
+
+    	public void onBottomToTopSwipe(View v){
+    		Log.i(logTag, "onBottomToTopSwipe!");
+    		switch( v.getId() ) {
+    		case R.id.Button_LW1:
+    			playerList[0].incr_stat2();
+    			break;
+    		case R.id.Button_C1:
+    			playerList[1].incr_stat2();
+    			break;
+    		case R.id.Button_RW1:
+    			playerList[2].incr_stat2();
+    			break;
+    		}		}
 
     	public boolean onTouch(View v, MotionEvent event) {
     		switch(event.getAction()){
@@ -308,12 +322,8 @@ public class MainActivity extends Activity {
 		    Log.i(logTag, "RightToLeftSwipe! of ");
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
-			    	stat1_LW1--; 
-			    	stat1_C1--; 
-			    	stat1_RW1--; 
-			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
-			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+			    	for( int i=0; i<3; i++ ) 
+			    		playerList[i].decr_stat1();
 			    	break;
 		    }
 		}
@@ -322,12 +332,8 @@ public class MainActivity extends Activity {
 		    Log.i(logTag, "LeftToRightSwipe!");
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
-			    	stat1_LW1++; 
-			    	stat1_C1++; 
-			    	stat1_RW1++; 
-			    	tv_stat1_LW1.setText(Integer.toString(stat1_LW1));
-			    	tv_stat1_C1.setText(Integer.toString(stat1_C1));
-			    	tv_stat1_RW1.setText(Integer.toString(stat1_RW1));
+			    	for( int i=0; i<3; i++ ) 
+			    		playerList[i].incr_stat1();
 			    	break;
 		    }
 		}
@@ -336,12 +342,8 @@ public class MainActivity extends Activity {
 		    Log.i(logTag, "onTopToBottomSwipe!");
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
-			    	stat2_LW1--; 
-			    	stat2_C1--; 
-			    	stat2_RW1--; 
-			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
-			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+			    	for( int i=0; i<3; i++ ) 
+			    		playerList[i].decr_stat2();
 			    	break;
 		    }
 		}
@@ -350,12 +352,8 @@ public class MainActivity extends Activity {
 		    Log.i(logTag, "onBottomToTopSwipe!");
 		    switch( v.getId() ) {
 			    case R.id.Button_Row1:
-			    	stat2_LW1++; 
-			    	stat2_C1++; 
-			    	stat2_RW1++; 
-			    	tv_stat2_LW1.setText(Integer.toString(stat2_LW1));
-			    	tv_stat2_C1.setText(Integer.toString(stat2_C1));
-			    	tv_stat2_RW1.setText(Integer.toString(stat2_RW1));
+			    	for( int i=0; i<3; i++ ) 
+			    		playerList[i].incr_stat2();
 			    	break;
 		    }
 		}
