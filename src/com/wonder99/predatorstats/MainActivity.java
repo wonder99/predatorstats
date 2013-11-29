@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
-	Button bt_Row1, bt_Row2;
+	Button bt_Row1, bt_Row2, bt_Row3;
 	Button resetStats;
 
 	public class Player {
@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	static Player[] playerList = new Player [6];
+	static Player[] playerList = new Player [9];
 	
 	ToggleButton tb_edit_mode;
 	boolean editMode;
@@ -141,6 +141,8 @@ public class MainActivity extends Activity {
 		bt_Row1.setOnTouchListener(rowSwipeDetector);
 		bt_Row2 = (Button) findViewById(R.id.Button_Row2);
 		bt_Row2.setOnTouchListener(rowSwipeDetector);
+		bt_Row3 = (Button) findViewById(R.id.Button_Row3);
+		bt_Row3.setOnTouchListener(rowSwipeDetector);
 		
 		final PlayerSwipeDetector playerSwipeDetector = new PlayerSwipeDetector(this);
 		
@@ -151,6 +153,10 @@ public class MainActivity extends Activity {
 		playerList[3] = new Player(R.id.Button_LW2,R.id.Stat1_LW2,R.id.Stat2_LW2);
 		playerList[4] = new Player(R.id.Button_C2, R.id.Stat1_C2, R.id.Stat2_C2);
 		playerList[5] = new Player(R.id.Button_RW2,R.id.Stat1_RW2,R.id.Stat2_RW2);
+
+		playerList[6] = new Player(R.id.Button_LW3,R.id.Stat1_LW3,R.id.Stat2_LW3);
+		playerList[7] = new Player(R.id.Button_C3, R.id.Stat1_C3, R.id.Stat2_C3);
+		playerList[8] = new Player(R.id.Button_RW3,R.id.Stat1_RW3,R.id.Stat2_RW3);
 
 		for( int i=0; i<playerList.length; i++) {
 			playerList[i].bt_player.setOnTouchListener(playerSwipeDetector);
@@ -258,7 +264,7 @@ public class MainActivity extends Activity {
     		Log.i(logTag, "onBottomToTopSwipe!");
 			for( int i=0; i<playerList.length; i++ ) {
 				if( playerList[i].bt_player.getId() == v.getId() ) {
-					playerList[i].incrStat1();
+					playerList[i].incrStat2();
 					break;
 				}
 			}
@@ -325,6 +331,10 @@ public class MainActivity extends Activity {
 			    	for( int i=3; i<6; i++ ) 
 			    		playerList[i].decrStat1();
 			    	break;
+			    case R.id.Button_Row3:
+			    	for( int i=6; i<9; i++ ) 
+			    		playerList[i].decrStat1();
+			    	break;
 		    }
 		}
 		
@@ -337,6 +347,10 @@ public class MainActivity extends Activity {
 			    	break;
 			    case R.id.Button_Row2:
 			    	for( int i=3; i<6; i++ ) 
+			    		playerList[i].incrStat1();
+			    	break;
+			    case R.id.Button_Row3:
+			    	for( int i=6; i<9; i++ ) 
 			    		playerList[i].incrStat1();
 			    	break;
 		    }
@@ -353,6 +367,10 @@ public class MainActivity extends Activity {
 			    	for( int i=3; i<6; i++ ) 
 			    		playerList[i].decrStat2();
 			    	break;
+			    case R.id.Button_Row3:
+			    	for( int i=6; i<9; i++ ) 
+			    		playerList[i].decrStat2();
+			    	break;
 		    }
 		}
 		
@@ -365,6 +383,10 @@ public class MainActivity extends Activity {
 			    	break;
 			    case R.id.Button_Row2:
 			    	for( int i=3; i<6; i++ ) 
+			    		playerList[i].incrStat2();
+			    	break;
+			    case R.id.Button_Row3:
+			    	for( int i=6; i<9; i++ ) 
 			    		playerList[i].incrStat2();
 			    	break;
 		    }
@@ -394,6 +416,14 @@ public class MainActivity extends Activity {
 		                    cView.setBackgroundResource(R.drawable.button_90_45_highlight);
 		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
 		                    break;
+		            	case R.id.Button_Row3:
+		            		lwView = (View) findViewById(R.id.Button_LW3);
+		            		cView = (View) findViewById(R.id.Button_C3);
+		            		rwView = (View) findViewById(R.id.Button_RW3);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    cView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45_highlight);
+		                    break;
 		            }
 		            return true;
 		        }
@@ -417,6 +447,14 @@ public class MainActivity extends Activity {
 		            		lwView = (View) findViewById(R.id.Button_LW2);
 		            		cView = (View) findViewById(R.id.Button_C2);
 		            		rwView = (View) findViewById(R.id.Button_RW2);
+		                    lwView.setBackgroundResource(R.drawable.button_90_45);
+		                    cView.setBackgroundResource(R.drawable.button_90_45);
+		                    rwView.setBackgroundResource(R.drawable.button_90_45);
+		                    break;
+		            	case R.id.Button_Row3:
+		            		lwView = (View) findViewById(R.id.Button_LW3);
+		            		cView = (View) findViewById(R.id.Button_C3);
+		            		rwView = (View) findViewById(R.id.Button_RW3);
 		                    lwView.setBackgroundResource(R.drawable.button_90_45);
 		                    cView.setBackgroundResource(R.drawable.button_90_45);
 		                    rwView.setBackgroundResource(R.drawable.button_90_45);
