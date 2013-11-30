@@ -1,14 +1,20 @@
 package com.wonder99.predatorstats;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import com.wonder99.predatorstats.R;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -126,15 +132,55 @@ public class MainActivity extends Activity {
 
 		res = getResources();
 		
+		/* Prepare for screen capture */
+		View screenContents = findViewById(R.id.layoutroot);
+		screenContents.setDrawingCacheEnabled(true);
+		Button bt_screen_grab = (Button) findViewById(R.id.Button_Screen_Grab);
+		bt_screen_grab.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				View content = findViewById(R.id.layoutroot);
+				Bitmap bitmap = content.getDrawingCache();
+				File file = new File( Environment.getExternalStorageDirectory() + "/predator_grab.png");
+				try 
+				{
+					file.createNewFile();
+					FileOutputStream ostream = new FileOutputStream(file);
+					bitmap.compress(CompressFormat.PNG, 100, ostream);
+					ostream.close();
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+
 		/*
 		 * Set up the Stats Reset button
 		 */
+
+		final AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+		
 		resetStats = (Button) findViewById(R.id.buttonReset);
 		resetStats.setOnClickListener(new OnClickListener () {
 			@Override
 			public void onClick(View v) {
-				for( int i=0; i<playerList.length; i++ ) 
-					playerList[i].clearStats();
+				builder1.setMessage("Are you sure you want to clear the stats?")
+				.setCancelable(false)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						for( int i=0; i<playerList.length; i++ ) 
+							playerList[i].clearStats();
+					}
+				})
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder1.create();
+				alert.show();
 			}
 		});
 		
