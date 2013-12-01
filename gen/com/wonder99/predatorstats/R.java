@@ -57,7 +57,7 @@ public final class R {
         public static final int Button_Row4=0x7f090031;
         public static final int Button_Row5=0x7f09003a;
         public static final int Button_Row6=0x7f090043;
-        public static final int Button_Screen_Grab=0x7f090048;
+        public static final int Button_Screen_Grab=0x7f090047;
         public static final int Button_edit_mode=0x7f090045;
         public static final int Edit_mode=0x7f090044;
         public static final int Layout_C1=0x7f090006;
@@ -107,7 +107,7 @@ public final class R {
         public static final int Stat2_RW3=0x7f090027;
         public static final int action_settings=0x7f090049;
         public static final int backgroundImage=0x7f090001;
-        public static final int buttonReset=0x7f090047;
+        public static final int buttonReset=0x7f090048;
         public static final int imageView1=0x7f090046;
         public static final int layoutroot=0x7f090000;
     }
